@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"> <!--반응형 웹을 위함-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- 구버젼 익스플로어를 위함-->
+    <meta name="cruzey" content="cruzey">
+    <meta name="description" content="12학번 이상윤 졸업작품입니다.">
+    <meta name="keywords" content="태양문구라인, 문구, 사무용품, 미술용품">
+    <title>사이트 코딩</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="{% static 'icons/tyshop1.png' %}"> <!-- 수정 -->
+    
+    <!-- 웹 폰트  -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- HTLM5shiv ie6~8 -->
+    <!--[if lt IE 9]> 
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script type="text/javascript">
+         alert("현재 브라우저는 지원하지 않습니다. 크롬 브라우저를 추천합니다.!");
+      </script>
+   <![endif]-->
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header clearfix">
+                    <h1>
+                        <em>
+                            <form action="{% url 'tyhome:index' %}" method="get">
+                                <button type="submit" id="" class="btn btnEvent">
+                                    <img src="{% static 'img/tyshop1.jpg' %}">
+                                </button>
+                            </form> 
+                        </em>
+                    </h1>
+                    <h2>
+                        <em> 
+                            <form action ="{% url 'tyadmins:list' %}" method ="get" >
+                                상품검색 : <input type ="search" name ="query" >
+                                <input type ="submit" name ="" value = "검색" >
+                            </form>
+                        </em>
+                    </h2>
+                    <nav id="mNav">
+                        <h2 class="ir_so">전체메뉴</h2>
+                        <li><a href="#" class="ham"><span></span></a>
+                            <ul class="submenu">
+                                {% if user.is_authenticated %}  
+                                    <li><a href={% url 'users:logout' %}>로그아웃</a></li>
+                                    <li><a href={% url 'users:mypage' %}>마이페이지</a></li>
+                                    <li><a href={% url 'tyadmins:list' %}> 전체메뉴</a></li>
+                                {% else %}
+                                    <li><a href={% url 'users:login' %}>로그인</a></li>
+                                    <li><a href={% url 'users:signup' %}>회원 가입</a></li>
+                                    <li><a href={% url 'tyadmins:list' %}> 전체메뉴</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </nav>
+                    <nav class="nav">
+                        <ul class="clearfix">
+                            {% if user.is_authenticated %}
+                                <li><a href={% url 'users:logout' %}>로그아웃</a></li>
+                                <li><a href="{% url 'users:mypage' %}">마이페이지</a></li>
+                                <li><a href="#">주문/배송</a></li>
+                                <li><a href="#">장바구니</a></li>
+                                <li><a href="#">고객센터</a></li>
+                            {% else %}
+                                <li><a href={% url 'users:login' %}>로그인</a></li>
+                                <li><a href={% url 'users:signup' %}>회원 가입</a></li>
+                                <li><a href="#">아이디 찾기</a></li>
+                                <li><a href="#">주문/배송</a></li>
+                                <li><a href="#">장바구니</a></li>
+                                <li><a href="#">고객센터</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    <div class="option">
+        <div class="infor_btn">
+            <a href="{% url 'tyadmins:list' %}">계속 쇼핑</a>
+        </div>
+        <div class="infor_btn">
+            <a href="{% url 'users:mypage' %}">결제 확인</a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min_1.12.4.js' %}"></script>
+    <script src="{% static 'js/modernizr-custom.js' %}"></script>
+    <script src="{% static 'js/ie-checker.js' %}"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script>
+        var IMP = window.IMP;
+        IMP.init('imp84055887');
+
+        IMP.request_pay({
+            pg : 'kakaopay', // version 1.1.0부터 지원.
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),
+            name : '주문명: {{order.product_id}}',
+            amount : {{order.number}}*{{order.product.price}}, //판매 가격
+            buyer_email : '{{order.user.email}}',
+            buyer_name : '{{order.user.first_name}}',
+            buyer_tel : '{{order.user.phonenum}}',
+            buyer_addr : '{{order.user.address}}'
+        }, function (rsp) {
+            if (rsp.success) {
+                jQuery.ajax({
+                    url: '', //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        imp_uid: rsp.imp_uid
+                    },
+                }).done(function (data) {
+                    alert("ajax done");               
+                    console.log("ajax done");
+                    if (data.status=='success') {
+                        var msg = '결제가 완료되었습니다.';
+                        msg += '\n고유ID : ' + rsp.imp_uid;
+                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                        msg += '\n결제 금액 : ' + rsp.paid_amount;
+                        msg += '\n카드 승인번호 : ' + rsp.apply_num;
+
+                        alert(msg);
+                        console.log(msg);
+                    } else {
+                        //[3] 아직 제대로 결제가 되지 않았습니다.
+                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                        var msg = '아직 제대로 결제가 되지 않았습니다.';
+                        alert(msg);
+                        console.log(msg);
+                    }
+                });
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                alert(msg);
+            }
+        });
+
+        $(document).ready(function(){
+            btn = $("#mNav >  li"); //버튼 아이디 변수 선언
+            layer = $(this).find(".submenu");
+            btn.click(function(){
+                layer.toggle(
+                    function(){layer.addClass('show')}, //클릭하면 show클래스 적용되서 보이기
+                    function(){layer.addClass('hide')} //한 번 더 클릭하면 hide클래스가 숨기기
+                );
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+{% comment %} <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> {% endcomment %}
+{% comment %} <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script> {% endcomment %}
+
+
+
+

@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"> <!--반응형 웹을 위함-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- 구버젼 익스플로어를 위함-->
+    <meta name="cruzey" content="cruzey">
+    <meta name="description" content="12학번 이상윤 졸업작품입니다.">
+    <meta name="keywords" content="태양문구라인, 문구, 사무용품, 미술용품">
+    <title>사이트 코딩</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="{% static 'icons/tyshop1.png' %}"> <!-- 수정 -->
+    
+    <!-- 웹 폰트  -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- HTLM5shiv ie6~8 -->
+    <!--[if lt IE 9]> 
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script type="text/javascript">
+         alert("현재 브라우저는 지원하지 않습니다. 크롬 브라우저를 추천합니다.!");
+      </script>
+   <![endif]-->
+</head>
+<body>
+    <section class="signup">
+    <h2>회원가입</h2>
+    <form action="{% url 'users:signup' %}" method='post'>
+    {% csrf_token %}
+        <ul>
+            <li><input name="username" type="username" placeholder="아이디" title="아이디입력"></li>
+            <li><input name="password" type="password" placeholder="비밀번호" title="비밀번호입력"></li>
+            <li><input name="first_name" type="text" placeholder="이름" title="이름입력"></li>
+            <li><input name="last_name" type="text" placeholder="성" title="성입력"></li>
+            <li><input name="email" type="email" placeholder="이메일" title="이메일입력"></li>
+            <li><input name="address" type="text" placeholder="주소" title="주소입력"></li>
+            <li><input name="phone_number" type="text" placeholder="핸드폰번호" title="핸드폰번호입력"></li>
+            <li><button type="submit">회원가입</button></li>
+        </ul>
+    </form>
+    </section>
+</body>
+</html>

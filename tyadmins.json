@@ -1,0 +1,138 @@
+[
+{
+    "model": "tyadmins.product",
+    "pk": 2,
+    "fields": {
+        "title": "\uac00\uc704",
+        "price": 1000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 3,
+    "fields": {
+        "title": "풀",
+        "price": 1000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 4,
+    "fields": {
+        "title": "샤프",
+        "price": 1000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 5,
+    "fields": {
+        "title": "화이트",
+        "price": 2000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 6,
+    "fields": {
+        "title": "화일",
+        "price": 2000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 7,
+    "fields": {
+        "title": "칼",
+        "price": 1500
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 8,
+    "fields": {
+        "title": "클립",
+        "price": 2000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 9,
+    "fields": {
+        "title": "A4 박스",
+        "price": 10000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 10,
+    "fields": {
+        "title": "연필",
+        "price": 1000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 11,
+    "fields": {
+        "title": "포스트잇",
+        "price": 2500
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 12,
+    "fields": {
+        "title": "만년필",
+        "price": 10000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 13,
+    "fields": {
+        "title": "압정",
+        "price": 1500
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 14,
+    "fields": {
+        "title": "보드게임",
+        "price": 25000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 15,
+    "fields": {
+        "title": "스티커",
+        "price": 1000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 16,
+    "fields": {
+        "title": "축구공",
+        "price": 7000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 17,
+    "fields": {
+        "title": "마스크",
+        "price": 2000
+    }
+},
+{
+    "model": "tyadmins.product",
+    "pk": 18,
+    "fields": {
+        "title": "인형",
+        "price": 5000
+    }
+}
+]

@@ -1,0 +1,348 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"> <!--반응형 웹을 위함-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- 구버젼 익스플로어를 위함-->
+    <meta name="cruzey" content="cruzey">
+    <meta name="description" content="12학번 이상윤 졸업작품입니다.">
+    <meta name="keywords" content="태양문구라인, 문구, 사무용품, 미술용품">
+    <title>사이트 코딩</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="{% static 'icons/tyshop1.png' %}"> <!-- 수정 -->
+    
+    <!-- 웹 폰트  -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- HTLM5shiv ie6~8 -->
+    <!--[if lt IE 9]> 
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script type="text/javascript">
+         alert("현재 브라우저는 지원하지 않습니다. 크롬 브라우저를 추천합니다.!");
+      </script>
+   <![endif]-->
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header clearfix">
+                    <h1>
+                        <em>
+                            <form action="{% url 'tyhome:index' %}" method="get">
+                                <button type="submit" id="" class="btn btnEvent">
+                                    <img src="{% static 'img/tyshop1.jpg' %}">
+                                </button>
+                            </form> 
+                        </em>
+                    </h1>
+                    <h2>
+                        <em> 
+                            <form action ="{% url 'tyadmins:list' %}" method ="get" >
+                                상품검색 : <input type ="search" name ="query" >
+                                <input type ="submit" name ="" value = "검색" >
+                            </form>
+                        </em>
+                    </h2>
+                    <nav id="mNav">
+                        <h2 class="ir_so">전체메뉴</h2>
+                        <li><a href="#" class="ham"><span></span></a>
+                            <ul class="submenu">
+                                {% if user.is_authenticated %}  
+                                    <li><a href={% url 'users:logout' %}>로그아웃</a></li>
+                                    <li><a href={% url 'users:mypage' %}>마이페이지</a></li>
+                                    <li><a href={% url 'tyadmins:list' %}> 전체메뉴</a></li>
+                                {% else %}
+                                    <li><a href={% url 'users:login' %}>로그인</a></li>
+                                    <li><a href={% url 'users:signup' %}>회원 가입</a></li>
+                                    <li><a href={% url 'tyadmins:list' %}> 전체메뉴</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </nav>
+                    <nav class="nav">
+                        <ul class="clearfix">
+                            {% if user.is_authenticated %}
+                                <li><a href={% url 'users:logout' %}>로그아웃</a></li>
+                                <li><a href="{% url 'users:mypage' %}">마이페이지</a></li>
+                                <li><a href="#">주문/배송</a></li>
+                                <li><a href="#">장바구니</a></li>
+                                <li><a href="#">고객센터</a></li>
+                            {% else %}
+                                <li><a href={% url 'users:login' %}>로그인</a></li>
+                                <li><a href={% url 'users:signup' %}>회원 가입</a></li>
+                                <li><a href="#">아이디 찾기</a></li>
+                                <li><a href="#">주문/배송</a></li>
+                                <li><a href="#">장바구니</a></li>
+                                <li><a href="#">고객센터</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+    
+    <section id="banner">
+        <h2 class="ir_so">이벤트 배너</h2>
+        <div class="banner_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="bm_left">
+                        <ul>
+                            <li class="total"><a href={% url 'tyadmins:list' %}><i class="fa fa-bars" aria-hidden="true"></i> 전체메뉴</a></li>
+                            <li class="line"><a href="#">BEST</a></li>
+                            <li class="line"><a href="#">신상품</a></li>
+                            <li class="line"><a href="#">특가상품</a></li>
+                            <li><a href="#">이벤트존</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide ss1">
+                        <div class="container">
+                            <div class="row">
+                                <h2> <em></em></h2>
+                                <p></p>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide ss2">
+                        <div class="container">
+                            <div class="row">
+                                <h2> <em></em></h2>
+                                <p></p>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide ss3">
+                        <div class="container">
+                            <div class="row">
+                                <h2> <em></em></h2>
+                                <p></p>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+<!--            <img src="assets/img/banner01.jpg" alt="카카오 상품">-->
+        </div>
+    </section>
+    <!-- //banner -->
+    
+    <section id="movie">
+        <div class="container">
+            <div class="row">
+                <div class="movie clearfix">
+                    <h2 class="chart">카테고리 별 베스트</h2>
+                    <div class="movie_title">
+                        <ul>
+                            <li><a href="#">이번달베스트</a></li>
+                            <li><a href="#">신상품</a></li>
+                            <li><a href="#">추천</a></li>
+                            <li><a href="#">행사</a></li>
+                        </ul>
+                    </div>
+                   
+                    {% for get_product_val in get_products %}
+                        <div class="prod_chart">
+                            <div class="poster">
+                                <figure>
+                                    <img class="product_img" src = "{{get_product_val.image.url}}">
+                                </figure>
+                            </div>
+                            <div class="infor" style="display:block;">
+                                <h3><div class="product_name"> {{get_product_val.name}}</h3>
+                                <div class="infor_btn">
+                                    <a href="{% url 'tyadmins:prodinfo' get_product_val.pk %}">상세정보</a>
+                                    <a href="#">구매하기</a>
+                                </div>
+                            </div>
+                        <!-- //chart_cont1-->
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //movie -->
+    
+    <section id="help">
+        <div class="container">
+            <div class="row">
+                <div class="help clearfix">
+                    <article class="help_box1">
+                        <h3>공지사항</h3>
+                        <div class="notice">
+                            <ul>
+                                <li class="active"><a href="#">전체 공지</a>
+                                    <ul>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">전체</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">전체</strong> <em>2019.05.24</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">전체</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">전체</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">공지</a>
+                                    <ul style="display: none">
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">안양</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">인덕원</strong> <em>2019.05.24</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">서울</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt><strong class="bar">전체</strong> <em>2019.05.28</em></dt>
+                                                <dd>카카오 학용품 3차 입고</dd>
+                                            </dl>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="help_box2">
+                        <h3>정보</h3>
+                        <div class="information">
+                            <div class="infor1">
+                            </div>
+                        </div>
+                    </article>
+                    {% comment %} <article class="help_box3">d</article> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //help -->
+    
+    <!-- 자바스크립트 라이브러리 -->
+    <script src="{% static 'js/jquery.min_1.12.4.js' %}"></script>
+    <script src="{% static 'js/modernizr-custom.js' %}"></script>
+    <script src="{% static 'js/ie-checker.js' %}"></script>
+    <script src="{% static 'js/swiper.min.js' %}"></script>
+    <script>
+
+        $(document).ready(function(){
+            btn = $("#mNav >  li"); //버튼 아이디 변수 선언
+            layer = $(this).find(".submenu");
+            btn.click(function(){
+                layer.toggle(
+                    function(){layer.addClass('show')}, //클릭하면 show클래스 적용되서 보이기
+                    function(){layer.addClass('hide')} //한 번 더 클릭하면 hide클래스가 숨기기
+                );
+            });
+        });
+          
+            
+        //배너 이미지 슬라이드
+        var swiper = new Swiper('.swiper-container',{
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 5000,
+            },
+        });
+        
+        //영화차트 이미지 슬라이드
+        var mySwiper = new Swiper('.swiper-container2', {
+            slidesPerView: 4,
+            spaceBetween: 24,
+//            mousewheel: {
+//                invert: true,
+//            },
+            keyboard: {
+                enabled: false,
+                onlyInViewport: false,
+            },
+            autoplay: {
+                delay: 6000,
+            },
+            breakpoints: {
+                600: {
+                    slidesPerView: 1.4,
+                    spaceBetween: 24
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 24
+                },
+                960: {
+                    slidesPerView: 3,
+                    spaceBetween: 24
+                }
+            }
+        });
+        
+        //영화차트 탭 메뉴
+        var movBtn = $(".movie_title > ul > li");
+        var movCont = $(".movie_chart > div");
+        
+        movCont.hide().eq(0).show();
+        
+        movBtn.click(function(e){
+            e.preventDefault();
+            var target = $(this);
+            var index = target.index();
+            movBtn.removeClass("active");
+            target.addClass("active");
+            movCont.css("display","none");
+            movCont.eq(index).css("display","block");
+        }); 
+    </script>
+</body>
+</html>
